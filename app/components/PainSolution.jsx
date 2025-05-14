@@ -1,4 +1,4 @@
-"use client"; 
+"use client";
 
 import { motion, useAnimation } from "framer-motion";
 import { useEffect } from "react";
@@ -6,37 +6,34 @@ import { useInView } from "react-intersection-observer";
 import { ExclamationCircleIcon, CheckCircleIcon } from "@heroicons/react/24/solid";
 
 const PainSolution = () => {
-  // Intersection Observer
   const controls = useAnimation();
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
 
   useEffect(() => {
-    if (inView) {
-      controls.start("visible");
-    }
+    if (inView) controls.start("visible");
   }, [controls, inView]);
 
   return (
-    <section ref={ref} className="py-20 px-6 md:px-12 bg-white">
-      <div className="max-w-5xl mx-auto text-center">
-        {/* Judul Section */}
-        <motion.h2
-          className="text-4xl md:text-5xl font-bold text-gray-900 leading-tight"
-          initial="hidden"
-          animate={controls}
-          variants={{
-            hidden: { opacity: 0, y: 30 },
-            visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
-          }}
-        >
-          Apakah Anda Mengalami Masalah Ini?
-        </motion.h2>
+    <section ref={ref} className="py-20 px-6 md:px-12 bg-[#F8F6FC]">
+      {/* Judul */}
+      <motion.div
+        className="max-w-5xl mx-auto text-center"
+        initial="hidden"
+        animate={controls}
+        variants={{
+          hidden: { opacity: 0, y: 30 },
+          visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
+        }}
+      >
+        <h2 className="text-4xl md:text-5xl font-bold text-[#4B2993] leading-tight">
+          Masalah Umum & Solusinya
+        </h2>
         <p className="text-gray-600 mt-4 text-lg">
-          Banyak orang menghadapi tantangan ini sebelum menemukan solusi yang tepat. Jangan khawatir, kami punya jawabannya!
+          Pelanggan sering menghadapi kendala ini sebelum menemukan teknologi yang tepat. Kami hadir untuk mengatasinya.
         </p>
-      </div>
+      </motion.div>
 
-      {/* Grid untuk Menampilkan Masalah & Solusi */}
+      {/* Konten */}
       <motion.div
         className="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto mt-14"
         initial="hidden"
@@ -52,82 +49,98 @@ const PainSolution = () => {
       >
         {/* Masalah */}
         <motion.div
-          className="bg-red-50 border-l-8 border-red-500 p-8 rounded-lg shadow-lg transition duration-300 hover:shadow-xl hover:-translate-y-2"
+          className="bg-white border-l-4 border-[#D1B3FF] p-8 rounded-2xl shadow-sm hover:shadow-md transition duration-300"
           variants={{
             hidden: { opacity: 0, x: -50 },
             visible: { opacity: 1, x: 0 },
           }}
         >
-          <h3 className="flex items-center text-2xl font-semibold text-red-600 mb-5">
-            <ExclamationCircleIcon className="h-7 w-7 text-red-500 mr-2" />
-            Tantangan yang Anda Hadapi
+          <h3 className="flex items-center text-2xl font-semibold text-[#6B4EFF] mb-5">
+            <ExclamationCircleIcon className="h-6 w-6 text-[#9C80FF] mr-2" />
+            Masalah yang Umum Terjadi
           </h3>
-          <ul className="mt-5 space-y-4 text-gray-700 text-lg">
-            <li className="flex items-center">
-              <ExclamationCircleIcon className="h-6 w-6 text-red-400 mr-2" />
-              Sulit mendapatkan hasil maksimal?
+          <ul className="mt-4 space-y-4 text-gray-700 text-[17px] leading-relaxed">
+            <li className="flex items-start">
+              <span className="mr-3 mt-1">
+                <ExclamationCircleIcon className="h-5 w-5 text-[#D1B3FF]" />
+              </span>
+              Perangkat tidak berfungsi optimal saat dibutuhkan
             </li>
-            <li className="flex items-center">
-              <ExclamationCircleIcon className="h-6 w-6 text-red-400 mr-2" />
-              Bingung harus mulai dari mana?
+            <li className="flex items-start">
+              <span className="mr-3 mt-1">
+                <ExclamationCircleIcon className="h-5 w-5 text-[#D1B3FF]" />
+              </span>
+              Bingung memilih produk teknologi yang sesuai
             </li>
-            <li className="flex items-center">
-              <ExclamationCircleIcon className="h-6 w-6 text-red-400 mr-2" />
-              Sudah mencoba berbagai cara tapi gagal?
+            <li className="flex items-start">
+              <span className="mr-3 mt-1">
+                <ExclamationCircleIcon className="h-5 w-5 text-[#D1B3FF]" />
+              </span>
+              Tidak tahu fitur mana yang paling penting
             </li>
-            <li className="flex items-center">
-              <ExclamationCircleIcon className="h-6 w-6 text-red-400 mr-2" />
-              Waktu & tenaga terbuang percuma?
+            <li className="flex items-start">
+              <span className="mr-3 mt-1">
+                <ExclamationCircleIcon className="h-5 w-5 text-[#D1B3FF]" />
+              </span>
+              Khawatir beli produk tapi tidak tahan lama
             </li>
           </ul>
         </motion.div>
 
         {/* Solusi */}
         <motion.div
-          className="bg-green-50 border-l-8 border-green-500 p-8 rounded-lg shadow-lg transition duration-300 hover:shadow-xl hover:-translate-y-2"
+          className="bg-white border-l-4 border-[#A88BFE] p-8 rounded-2xl shadow-sm hover:shadow-md transition duration-300"
           variants={{
             hidden: { opacity: 0, x: 50 },
             visible: { opacity: 1, x: 0 },
           }}
         >
-          <h3 className="flex items-center text-2xl font-semibold text-green-600 mb-5">
-            <CheckCircleIcon className="h-7 w-7 text-green-500 mr-2" />
-            Solusi Terbaik untuk Anda
+          <h3 className="flex items-center text-2xl font-semibold text-[#6B4EFF] mb-5">
+            <CheckCircleIcon className="h-6 w-6 text-[#A88BFE] mr-2" />
+            Solusi yang Kami Tawarkan
           </h3>
-          <ul className="mt-5 space-y-4 text-gray-700 text-lg">
-            <li className="flex items-center">
-              <CheckCircleIcon className="h-6 w-6 text-green-400 mr-2" />
-              🚀 Strategi yang terbukti berhasil
+          <ul className="mt-4 space-y-4 text-gray-700 text-[17px] leading-relaxed">
+            <li className="flex items-start">
+              <span className="mr-3 mt-1">
+                <CheckCircleIcon className="h-5 w-5 text-[#BCA6FF]" />
+              </span>
+              Rekomendasi produk berkualitas & bergaransi
             </li>
-            <li className="flex items-center">
-              <CheckCircleIcon className="h-6 w-6 text-green-400 mr-2" />
-              🔑 Langkah-langkah jelas & mudah diikuti
+            <li className="flex items-start">
+              <span className="mr-3 mt-1">
+                <CheckCircleIcon className="h-5 w-5 text-[#BCA6FF]" />
+              </span>
+              Panduan lengkap sebelum dan sesudah pembelian
             </li>
-            <li className="flex items-center">
-              <CheckCircleIcon className="h-6 w-6 text-green-400 mr-2" />
-              🛠️ Tools dan resources eksklusif
+            <li className="flex items-start">
+              <span className="mr-3 mt-1">
+                <CheckCircleIcon className="h-5 w-5 text-[#BCA6FF]" />
+              </span>
+              Dukungan pelanggan 24/7 untuk konsultasi
             </li>
-            <li className="flex items-center">
-              <CheckCircleIcon className="h-6 w-6 text-green-400 mr-2" />
-              🎯 Dapatkan hasil lebih cepat & efektif
+            <li className="flex items-start">
+              <span className="mr-3 mt-1">
+                <CheckCircleIcon className="h-5 w-5 text-[#BCA6FF]" />
+              </span>
+              Garansi pengembalian & penggantian cepat
             </li>
           </ul>
         </motion.div>
       </motion.div>
 
-      {/* Call-to-Action */}
-      <div className="text-center mt-14">
+      {/* CTA */}
+      <div className="text-center mt-16">
         <motion.a
-          href="#cta"
-          className="bg-blue-600 text-white px-8 py-4 rounded-md font-semibold text-xl shadow-lg hover:bg-blue-700 transition duration-300 transform hover:scale-105"
+          href="#produk"
+          className="inline-block bg-[#6B4EFF] hover:bg-[#5A3BEF] text-white px-8 py-4 rounded-xl text-lg font-semibold shadow-md transition-transform duration-300 hover:scale-105"
           initial="hidden"
           animate={controls}
           variants={{
-            hidden: { opacity: 0, scale: 0.9 },
-            visible: { opacity: 1, scale: 1, transition: { duration: 0.5, delay: 0.6 } },
+            hidden: { opacity: 0, scale: 0.95 },
+            visible: { opacity: 1, scale: 1, transition: { duration: 0.5, delay: 0.4 } },
           }}
         >
-          Dapatkan Solusi Sekarang 🚀
+          Temukan Produk yang Tepat 🔍
         </motion.a>
       </div>
     </section>

@@ -50,7 +50,7 @@ const Testimonials = () => {
       <div className="max-w-4xl mx-auto text-center">
         {/* Judul Section */}
         <motion.h2
-          className="text-4xl md:text-5xl font-bold text-[#8B5E3B] leading-tight"
+          className="text-4xl md:text-5xl font-bold text-purple-700 leading-tight"
           initial="hidden"
           animate={controls}
           variants={{
@@ -115,7 +115,7 @@ const Testimonials = () => {
                   "{testimonial.quote}"
                 </motion.p>
                 <motion.h3
-                  className="mt-4 text-xl font-semibold text-[#8B5E3B]"
+                  className="mt-4 text-xl font-semibold text-purple-700"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.6 }}
@@ -140,7 +140,7 @@ const Testimonials = () => {
       <div className="text-center mt-14">
         <motion.a
           href="#cta"
-          className="bg-[#8B5E3B] text-white px-8 py-4 rounded-md font-semibold text-xl shadow-lg hover:bg-[#6E3F22] transition duration-300 transform hover:scale-105"
+          className="bg-purple-700 text-white px-8 py-4 rounded-md font-semibold text-xl shadow-lg hover:bg-purple-600 transition duration-300 transform hover:scale-105"
           initial="hidden"
           animate={controls}
           variants={{

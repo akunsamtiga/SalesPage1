@@ -42,22 +42,24 @@ const FAQ = () => {
   };
 
   return (
-    <section ref={ref} className="py-20 px-6 md:px-12 bg-[#F8F5F2] text-gray-900">
+    <section ref={ref} className="py-20 px-6 md:px-12 bg-[#F9FAFB] text-gray-900">
       <motion.div
         className="max-w-5xl mx-auto text-center"
         initial={{ opacity: 0, y: 30 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.8 }}
       >
-        <h2 className="text-5xl font-bold text-[#8B5E3B]">Pertanyaan Umum</h2>
+        <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight text-purple-700">
+          Pertanyaan Umum
+        </h2>
         <p className="text-gray-600 mt-4 text-lg">
-          Jawaban untuk pertanyaan yang sering diajukan.
+          Jawaban untuk pertanyaan yang sering diajukan tentang produk kami.
         </p>
       </motion.div>
 
       {/* FAQ List */}
       <motion.div
-        className="mt-10 max-w-4xl mx-auto space-y-6"
+        className="mt-12 max-w-4xl mx-auto space-y-5"
         initial={{ opacity: 0, y: 30 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.8, delay: 0.2 }}
@@ -65,19 +67,19 @@ const FAQ = () => {
         {faqs.map((faq, index) => (
           <motion.div
             key={index}
-            className="border border-[#E0C097] rounded-xl overflow-hidden shadow-md bg-white"
-            whileHover={{ scale: 1.02 }}
+            className="rounded-xl border border-purple-200 bg-white shadow-sm transition-all duration-300 hover:shadow-md"
+            whileHover={{ scale: 1.01 }}
           >
             <button
               onClick={() => toggleFAQ(index)}
-              className="w-full flex justify-between items-center p-5 text-lg font-semibold bg-[#F5E8DD] hover:bg-[#EAD6C1] transition duration-300"
+              className="w-full flex justify-between items-center px-6 py-5 text-left font-medium text-gray-800 bg-gradient-to-r from-purple-50 to-white hover:from-purple-100 transition-colors duration-300"
             >
-              {faq.question}
+              <span>{faq.question}</span>
               <motion.div
                 animate={{ rotate: openIndex === index ? 180 : 0 }}
                 transition={{ duration: 0.3 }}
               >
-                <FaChevronDown className="text-[#8B5E3B]" />
+                <FaChevronDown className="text-purple-600" />
               </motion.div>
             </button>
             <motion.div
@@ -90,7 +92,9 @@ const FAQ = () => {
               transition={{ duration: 0.4 }}
               className="overflow-hidden"
             >
-              <p className="p-5 text-gray-700">{faq.answer}</p>
+              <p className="px-6 pb-5 text-gray-700 text-base leading-relaxed">
+                {faq.answer}
+              </p>
             </motion.div>
           </motion.div>
         ))}

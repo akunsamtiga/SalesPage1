@@ -3,33 +3,32 @@
 import { motion, useAnimation } from "framer-motion";
 import { useEffect } from "react";
 import { useInView } from "react-intersection-observer";
-import { FaCouch, FaTools, FaShieldAlt, FaStar } from "react-icons/fa"; // Ikon furnitur
+import { FaDesktop, FaMobileAlt, FaShieldAlt, FaStar } from "react-icons/fa"; // Ikon elektronik
 
 const features = [
   {
-    icon: <FaCouch className="h-12 w-12 text-[#8B5E3B]" />,
-    title: "Desain Elegan & Mewah",
-    description: "Kami menghadirkan furnitur dengan desain eksklusif yang menambah estetika ruangan Anda.",
+    icon: <FaDesktop className="h-12 w-12 text-[#8B5E3B]" />,
+    title: "Desain Elegan & Modern",
+    description: "Produk elektronik kami memiliki desain yang stylish dan futuristik, cocok untuk rumah dan kantor.",
   },
   {
-    icon: <FaTools className="h-12 w-12 text-[#4CAF50]" />,
+    icon: <FaMobileAlt className="h-12 w-12 text-[#4CAF50]" />,
     title: "Kualitas Terbaik",
-    description: "Menggunakan material premium yang tahan lama dengan pengerjaan yang presisi.",
+    description: "Menggunakan teknologi terkini dan material premium untuk ketahanan maksimal.",
   },
   {
     icon: <FaShieldAlt className="h-12 w-12 text-[#6A5ACD]" />,
-    title: "Jaminan Keamanan",
-    description: "Setiap produk diuji ketahanan dan keamanannya untuk kenyamanan pengguna.",
+    title: "Keamanan Terjamin",
+    description: "Setiap produk telah melalui uji ketahanan dan memenuhi standar keamanan tertinggi.",
   },
   {
     icon: <FaStar className="h-12 w-12 text-[#FFD700]" />,
-    title: "Dipercaya oleh Banyak Klien",
-    description: "Digunakan oleh hunian mewah dan bisnis ternama di seluruh dunia.",
+    title: "Paling Dipercaya",
+    description: "Dipercaya oleh konsumen di seluruh dunia dan menjadi pilihan utama di industri elektronik.",
   },
 ];
 
 const ValueProposition = () => {
-  // Intersection Observer
   const controls = useAnimation();
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
 
@@ -40,11 +39,11 @@ const ValueProposition = () => {
   }, [controls, inView]);
 
   return (
-    <section ref={ref} className="py-20 px-6 md:px-12 bg-[#FAF3E0] text-gray-900">
+    <section ref={ref} className="py-20 px-6 md:px-12 bg-gray-100 text-gray-900">
       <div className="max-w-5xl mx-auto text-center">
         {/* Judul Section */}
         <motion.h2
-          className="text-4xl md:text-5xl font-bold text-[#8B5E3B] leading-tight"
+          className="text-4xl md:text-5xl font-bold text-[#6D28D9] leading-tight"
           initial="hidden"
           animate={controls}
           variants={{
@@ -52,10 +51,10 @@ const ValueProposition = () => {
             visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
           }}
         >
-          Mengapa Memilih Furnitur Kami?
+          Mengapa Memilih Produk Kami?
         </motion.h2>
         <p className="text-gray-700 mt-4 text-lg">
-          Kami tidak hanya menawarkan furnitur, tetapi juga pengalaman dan keindahan dalam setiap ruang.
+          Kami tidak hanya menjual produk elektronik, tetapi juga pengalaman yang membawa inovasi ke ruang Anda.
         </p>
       </div>
 
@@ -93,7 +92,7 @@ const ValueProposition = () => {
       <div className="text-center mt-14">
         <motion.a
           href="#cta"
-          className="bg-[#8B5E3B] text-white px-8 py-4 rounded-md font-semibold text-xl shadow-lg hover:bg-[#6E3F22] transition duration-300 transform hover:scale-105"
+          className="bg-[#6D28D9] text-white px-8 py-4 rounded-md font-semibold text-xl shadow-lg hover:bg-[#4B1F87] transition duration-300 transform hover:scale-105"
           initial="hidden"
           animate={controls}
           variants={{

@@ -41,7 +41,7 @@ const Pricing = () => {
   return (
     <section
       ref={ref}
-      className="py-20 px-6 md:px-12 bg-[#FAF3E0] text-gray-900 relative overflow-hidden"
+      className="py-20 px-6 md:px-12 bg-[#F9F7FF] text-gray-900 relative overflow-hidden"
     >
       {/* Background Pattern */}
       <div className="absolute inset-0 bg-[url('/images/wood-pattern.png')] opacity-10 pointer-events-none"></div>
@@ -53,7 +53,7 @@ const Pricing = () => {
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.8 }}
       >
-        <h2 className="text-5xl font-bold leading-tight text-[#8B5E3B]">
+        <h2 className="text-5xl font-bold leading-tight text-purple-700">
           Pilih Paket Desain Furnitur Anda
         </h2>
         <p className="text-gray-700 mt-4 text-lg">
@@ -76,7 +76,7 @@ const Pricing = () => {
             {/* Label Best Seller */}
             {index === 1 && (
               <motion.span
-                className="absolute -top-5 px-4 py-1 text-sm font-bold bg-[#8B5E3B] text-white rounded-full"
+                className="absolute -top-5 px-4 py-1 text-sm font-bold bg-purple-600 text-white rounded-full"
                 initial={{ opacity: 0, scale: 0.5 }}
                 animate={inView ? { opacity: 1, scale: 1 } : {}}
                 transition={{ duration: 0.5, delay: 0.2 }}
@@ -84,11 +84,11 @@ const Pricing = () => {
                 Best Seller ⭐
               </motion.span>
             )}
-            <h3 className="text-2xl font-semibold text-[#8B5E3B]">{plan.name}</h3>
+            <h3 className="text-2xl font-semibold text-purple-700">{plan.name}</h3>
 
             {/* Harga */}
             <motion.p
-              className="text-4xl font-bold mt-4 text-[#8B4513]"
+              className="text-4xl font-bold mt-4 text-[#8B5E3B]"
               initial={{ opacity: 0 }}
               animate={inView ? { opacity: 1 } : {}}
               transition={{ duration: 1, delay: 0.2 }}
@@ -115,7 +115,7 @@ const Pricing = () => {
             {/* Tombol CTA */}
             <motion.a
               href="#checkout"
-              className="mt-8 px-8 py-4 text-white font-semibold rounded-lg bg-gradient-to-r from-[#A67B5B] to-[#8B5E3B] shadow-lg hover:shadow-[#6E3F22] transition duration-300 text-lg"
+              className="mt-8 px-8 py-4 text-white font-semibold rounded-lg bg-gradient-to-r from-purple-500 to-purple-600 shadow-lg hover:shadow-[#6E3F22] transition duration-300 text-lg"
               whileHover={{ scale: 1.1 }}
             >
               {plan.buttonText}

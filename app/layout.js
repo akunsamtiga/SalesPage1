@@ -12,26 +12,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
-  title: "🚀 Produk Digital Terbaik | Nama Brand",
+  title: "LuxeElectro",
   description:
-    "Temukan solusi terbaik untuk meningkatkan produktivitas dan kesuksesan Anda dengan produk inovatif dari Nama Brand.",
-  keywords: "produk digital, kursus online, sukses bisnis, strategi pemasaran",
-  author: "Nama Brand",
-  openGraph: {
-    title: "🚀 Produk Digital Terbaik | Nama Brand",
-    description:
-      "Temukan solusi terbaik untuk meningkatkan produktivitas dan kesuksesan Anda.",
-    url: "https://www.namabrand.com/",
-    type: "website",
-    images: [
-      {
-        url: "/images/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "Gambar Produk Digital",
-      },
-    ],
-  },
+    "Bawa kemewahan ke dalam kehidupan sehari-hari dengan pilihan elektronik terbaik.",
+  author: "Sanzystore",
 };
 
 export default function RootLayout({ children }) {
