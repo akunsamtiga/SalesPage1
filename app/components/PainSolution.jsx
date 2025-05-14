@@ -1,147 +1,155 @@
 "use client";
-
-import { motion, useAnimation } from "framer-motion";
-import { useEffect } from "react";
+import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
 import { ExclamationCircleIcon, CheckCircleIcon } from "@heroicons/react/24/solid";
 
 const PainSolution = () => {
-  const controls = useAnimation();
-  const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.2 });
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+    rootMargin: "50px"
+  });
 
-  useEffect(() => {
-    if (inView) controls.start("visible");
-  }, [controls, inView]);
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.2
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    }
+  };
+
+  const problems = [
+    "Perangkat tidak berfungsi optimal saat dibutuhkan",
+    "Bingung memilih produk teknologi yang sesuai",
+    "Tidak tahu fitur mana yang paling penting",
+    "Khawatir beli produk tapi tidak tahan lama"
+  ];
+
+  const solutions = [
+    "Rekomendasi produk berkualitas & bergaransi",
+    "Panduan lengkap sebelum dan sesudah pembelian",
+    "Dukungan pelanggan 24/7 untuk konsultasi",
+    "Garansi pengembalian & penggantian cepat"
+  ];
 
   return (
-    <section ref={ref} className="py-20 px-6 md:px-12 bg-[#F8F6FC]">
-      {/* Judul */}
-      <motion.div
-        className="max-w-5xl mx-auto text-center"
-        initial="hidden"
-        animate={controls}
-        variants={{
-          hidden: { opacity: 0, y: 30 },
-          visible: { opacity: 1, y: 0, transition: { duration: 0.8 } },
-        }}
-      >
-        <h2 className="text-4xl md:text-5xl font-bold text-[#4B2993] leading-tight">
-          Masalah Umum & Solusinya
-        </h2>
-        <p className="text-gray-600 mt-4 text-lg">
-          Pelanggan sering menghadapi kendala ini sebelum menemukan teknologi yang tepat. Kami hadir untuk mengatasinya.
-        </p>
-      </motion.div>
-
-      {/* Konten */}
-      <motion.div
-        className="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto mt-14"
-        initial="hidden"
-        animate={controls}
-        variants={{
-          hidden: { opacity: 0, y: 30 },
-          visible: {
-            opacity: 1,
-            y: 0,
-            transition: { staggerChildren: 0.2, duration: 0.8 },
-          },
-        }}
-      >
-        {/* Masalah */}
-        <motion.div
-          className="bg-white border-l-4 border-[#D1B3FF] p-8 rounded-2xl shadow-sm hover:shadow-md transition duration-300"
-          variants={{
-            hidden: { opacity: 0, x: -50 },
-            visible: { opacity: 1, x: 0 },
-          }}
-        >
-          <h3 className="flex items-center text-2xl font-semibold text-[#6B4EFF] mb-5">
-            <ExclamationCircleIcon className="h-6 w-6 text-[#9C80FF] mr-2" />
-            Masalah yang Umum Terjadi
-          </h3>
-          <ul className="mt-4 space-y-4 text-gray-700 text-[17px] leading-relaxed">
-            <li className="flex items-start">
-              <span className="mr-3 mt-1">
-                <ExclamationCircleIcon className="h-5 w-5 text-[#D1B3FF]" />
-              </span>
-              Perangkat tidak berfungsi optimal saat dibutuhkan
-            </li>
-            <li className="flex items-start">
-              <span className="mr-3 mt-1">
-                <ExclamationCircleIcon className="h-5 w-5 text-[#D1B3FF]" />
-              </span>
-              Bingung memilih produk teknologi yang sesuai
-            </li>
-            <li className="flex items-start">
-              <span className="mr-3 mt-1">
-                <ExclamationCircleIcon className="h-5 w-5 text-[#D1B3FF]" />
-              </span>
-              Tidak tahu fitur mana yang paling penting
-            </li>
-            <li className="flex items-start">
-              <span className="mr-3 mt-1">
-                <ExclamationCircleIcon className="h-5 w-5 text-[#D1B3FF]" />
-              </span>
-              Khawatir beli produk tapi tidak tahan lama
-            </li>
-          </ul>
-        </motion.div>
-
-        {/* Solusi */}
-        <motion.div
-          className="bg-white border-l-4 border-[#A88BFE] p-8 rounded-2xl shadow-sm hover:shadow-md transition duration-300"
-          variants={{
-            hidden: { opacity: 0, x: 50 },
-            visible: { opacity: 1, x: 0 },
-          }}
-        >
-          <h3 className="flex items-center text-2xl font-semibold text-[#6B4EFF] mb-5">
-            <CheckCircleIcon className="h-6 w-6 text-[#A88BFE] mr-2" />
-            Solusi yang Kami Tawarkan
-          </h3>
-          <ul className="mt-4 space-y-4 text-gray-700 text-[17px] leading-relaxed">
-            <li className="flex items-start">
-              <span className="mr-3 mt-1">
-                <CheckCircleIcon className="h-5 w-5 text-[#BCA6FF]" />
-              </span>
-              Rekomendasi produk berkualitas & bergaransi
-            </li>
-            <li className="flex items-start">
-              <span className="mr-3 mt-1">
-                <CheckCircleIcon className="h-5 w-5 text-[#BCA6FF]" />
-              </span>
-              Panduan lengkap sebelum dan sesudah pembelian
-            </li>
-            <li className="flex items-start">
-              <span className="mr-3 mt-1">
-                <CheckCircleIcon className="h-5 w-5 text-[#BCA6FF]" />
-              </span>
-              Dukungan pelanggan 24/7 untuk konsultasi
-            </li>
-            <li className="flex items-start">
-              <span className="mr-3 mt-1">
-                <CheckCircleIcon className="h-5 w-5 text-[#BCA6FF]" />
-              </span>
-              Garansi pengembalian & penggantian cepat
-            </li>
-          </ul>
-        </motion.div>
-      </motion.div>
-
-      {/* CTA */}
-      <div className="text-center mt-16">
-        <motion.a
-          href="#produk"
-          className="inline-block bg-[#6B4EFF] hover:bg-[#5A3BEF] text-white px-8 py-4 rounded-xl text-lg font-semibold shadow-md transition-transform duration-300 hover:scale-105"
+    <section 
+      ref={ref}
+      className="py-16 px-4 sm:px-6 lg:px-8 bg-purple-50"
+      aria-labelledby="pain-solution-heading"
+    >
+      <div className="max-w-5xl mx-auto">
+        {/* Header */}
+        <motion.header
+          className="text-center mb-12"
           initial="hidden"
-          animate={controls}
-          variants={{
-            hidden: { opacity: 0, scale: 0.95 },
-            visible: { opacity: 1, scale: 1, transition: { duration: 0.5, delay: 0.4 } },
-          }}
+          animate={inView ? "visible" : "hidden"}
+          variants={containerVariants}
         >
-          Temukan Produk yang Tepat 🔍
-        </motion.a>
+          <motion.h2 
+            id="pain-solution-heading"
+            className="text-3xl sm:text-4xl font-bold text-purple-800 leading-tight"
+            variants={itemVariants}
+          >
+            Masalah Umum & Solusinya
+          </motion.h2>
+          <motion.p 
+            className="mt-4 text-gray-600 text-base sm:text-lg max-w-2xl mx-auto"
+            variants={itemVariants}
+          >
+            Pelanggan sering menghadapi kendala ini sebelum menemukan teknologi yang tepat. Kami hadir untuk mengatasinya.
+          </motion.p>
+        </motion.header>
+
+        {/* Content */}
+        <motion.div
+          className="grid md:grid-cols-2 gap-6"
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          variants={containerVariants}
+        >
+          {/* Problems */}
+          <motion.div
+            className="bg-white border-l-4 border-purple-300 p-6 rounded-xl shadow-xs"
+            variants={itemVariants}
+          >
+            <div className="flex items-center mb-4">
+              <ExclamationCircleIcon className="h-6 w-6 text-purple-500 mr-2" />
+              <h3 className="text-xl font-semibold text-purple-800">
+                Masalah yang Umum Terjadi
+              </h3>
+            </div>
+            <ul className="space-y-3">
+              {problems.map((problem, index) => (
+                <motion.li 
+                  key={index}
+                  className="flex items-start text-gray-700"
+                  variants={itemVariants}
+                >
+                  <ExclamationCircleIcon className="h-5 w-5 text-purple-300 mt-0.5 mr-2 flex-shrink-0" />
+                  <span>{problem}</span>
+                </motion.li>
+              ))}
+            </ul>
+          </motion.div>
+
+          {/* Solutions */}
+          <motion.div
+            className="bg-white border-l-4 border-purple-400 p-6 rounded-xl shadow-xs"
+            variants={itemVariants}
+          >
+            <div className="flex items-center mb-4">
+              <CheckCircleIcon className="h-6 w-6 text-purple-600 mr-2" />
+              <h3 className="text-xl font-semibold text-purple-800">
+                Solusi yang Kami Tawarkan
+              </h3>
+            </div>
+            <ul className="space-y-3">
+              {solutions.map((solution, index) => (
+                <motion.li 
+                  key={index}
+                  className="flex items-start text-gray-700"
+                  variants={itemVariants}
+                >
+                  <CheckCircleIcon className="h-5 w-5 text-purple-400 mt-0.5 mr-2 flex-shrink-0" />
+                  <span>{solution}</span>
+                </motion.li>
+              ))}
+            </ul>
+          </motion.div>
+        </motion.div>
+
+        {/* CTA */}
+        <motion.div
+          className="text-center mt-12"
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          variants={itemVariants}
+        >
+          <a
+            href="#produk"
+            className="inline-block bg-purple-600 hover:bg-purple-700 text-white px-6 py-3 rounded-lg font-medium shadow-sm transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
+            aria-label="Temukan Produk yang Tepat"
+          >
+            Temukan Produk yang Tepat
+            <span aria-hidden="true" className="ml-2">🔍</span>
+          </a>
+        </motion.div>
       </div>
     </section>
   );

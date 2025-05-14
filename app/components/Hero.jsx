@@ -4,20 +4,20 @@ import Image from "next/image";
 
 export default function Hero() {
   return (
-    <section className="relative bg-gradient-to-b from-purple-200 to-white pb-20">
-
-      {/* Background Wave */}
-      <div className="absolute top-0 left-0 w-full hidden md:block">
-        <svg viewBox="0 0 1440 320" className="w-full">
+    <section className="relative bg-gradient-to-b from-purple-100 to-white pb-20">
+      {/* Background Wave - Optimized with aria-hidden */}
+      <div className="absolute top-0 left-0 w-full hidden md:block" aria-hidden="true">
+        <svg viewBox="0 0 1440 320" className="w-full" focusable="false">
           <path
             fill="#ffffff"
+            fillOpacity="1"
             d="M0,224L80,208C160,192,320,160,480,144C640,128,800,128,960,144C1120,160,1280,192,1360,208L1440,224L1440,0L0,0Z"
           />
         </svg>
       </div>
 
-      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-16">
-        {/* Mobile Hero */}
+      <div className="relative z-10 container mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Mobile Hero - Optimized image loading */}
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
@@ -25,17 +25,19 @@ export default function Hero() {
           transition={{ duration: 0.6 }}
           className="block md:hidden relative mb-6"
         >
-          <div className="relative w-full h-[180px] rounded-b-3xl overflow-hidden">
+          <div className="relative w-full aspect-video rounded-b-2xl overflow-hidden">
             <Image
-              src="/images/purple-electro-mobile.jpg"
+              src="/images/sofa.jpg"
               alt="Promo Elektronik Ungu"
-              fill
+              width={600}
+              height={400}
               className="object-cover"
               priority
+              sizes="(max-width: 768px) 100vw, 50vw"
             />
-            <div className="absolute inset-x-0 bottom-0 bg-black/60 text-white text-center py-4 px-6">
+            <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/70 to-transparent text-white p-4">
               <h1 className="text-xl font-bold">Elektronik Mewah Ungu</h1>
-              <p className="text-sm">Elegan, Canggih, dan Hemat Energi</p>
+              <p className="text-sm mt-1">Elegan, Canggih, dan Hemat Energi</p>
             </div>
           </div>
         </motion.div>
@@ -51,38 +53,45 @@ export default function Hero() {
           <p className="text-gray-700 text-base">
             Jelajahi koleksi perangkat elektronik kami dengan sentuhan ungu yang menawan.
           </p>
-          <button className="mt-4 bg-purple-600 text-white px-6 py-3 rounded-lg font-medium shadow-md hover:bg-purple-700 transition">
+          <button 
+            className="mt-4 bg-purple-600 text-white px-6 py-3 rounded-lg font-medium shadow-md hover:bg-purple-700 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
+            aria-label="Lihat Koleksi Unggulan"
+          >
             Lihat Koleksi Unggulan
           </button>
         </motion.div>
 
         {/* Desktop & Tablet Grid */}
-        <div className="hidden md:grid grid-cols-1 md:grid-cols-2 gap-12 items-center pt-32">
-          {/* Text */}
+        <div className="hidden md:grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12 items-center pt-24 lg:pt-32">
+          {/* Text Content */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.6 }}
+            className="space-y-4"
           >
-            <h1 className="text-4xl lg:text-5xl font-bold text-gray-800 leading-tight">
-              Teknologi Ungu <br /> Untuk Hidup Lebih Mewah
+            <h1 className="text-3xl lg:text-5xl font-bold text-gray-900 leading-tight">
+              Teknologi Ungu <br className="hidden lg:block" /> Untuk Hidup Lebih Mewah
             </h1>
-            <p className="mt-4 text-gray-600 text-lg">
+            <p className="text-gray-600 lg:text-lg max-w-md">
               Dapatkan gadget dan home appliance pilihan dengan aksen ungu yang elegan.
             </p>
-            <button className="mt-6 bg-purple-600 text-white px-6 py-3 rounded-lg font-medium shadow-md hover:bg-purple-700 transition">
+            <button 
+              className="mt-4 bg-purple-600 text-white px-6 py-3 rounded-lg font-medium shadow-md hover:bg-purple-700 transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
+              aria-label="Jelajahi Koleksi Sekarang"
+            >
               Jelajahi Sekarang
             </button>
           </motion.div>
 
-          {/* Image */}
+          {/* Image - Optimized with proper dimensions */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.6 }}
-            className="relative w-full h-[360px]"
+            className="relative w-full aspect-[4/3]"
           >
             <Image
               src="/images/sofa.jpg"
@@ -90,50 +99,58 @@ export default function Hero() {
               fill
               className="object-cover rounded-xl shadow-lg"
               priority
+              sizes="(max-width: 1024px) 50vw, 33vw"
             />
-            <div className="absolute bottom-5 right-5 bg-gray-900/80 text-white text-sm px-4 py-2 rounded-lg">
+            <div className="absolute bottom-4 right-4 bg-gray-900/90 text-white text-sm px-3 py-1.5 rounded-lg backdrop-blur-sm">
               <p>300+ Produk Ungu Terpilih</p>
             </div>
           </motion.div>
         </div>
 
-        {/* Info & About */}
-        <div className="mt-20 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
-          {/* Stats Card */}
+        {/* Info & About Section */}
+        <div className="mt-16 lg:mt-20 grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+          {/* Stats Card - Improved contrast */}
           <motion.div
             initial={{ opacity: 0, x: -30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.6 }}
-            className="bg-gradient-to-br from-purple-700 to-purple-500 text-white p-8 rounded-xl shadow-xl text-center md:text-left"
+            className="bg-gradient-to-br from-purple-700 to-purple-600 text-white p-6 lg:p-8 rounded-xl shadow-lg"
           >
-            <p className="text-lg font-semibold">ELEKTRONIK PREMIUM</p>
-            <h2 className="text-4xl font-bold mt-2">20.000+</h2>
-            <p className="mt-2 text-sm">Unit Terjual</p>
-            <h2 className="text-2xl font-bold mt-4">15+</h2>
-            <p className="mt-2 text-sm">Merek Terpercaya</p>
+            <p className="text-base lg:text-lg font-semibold">ELEKTRONIK PREMIUM</p>
+            <div className="mt-4 space-y-4">
+              <div>
+                <h2 className="text-3xl lg:text-4xl font-bold">20.000+</h2>
+                <p className="text-sm lg:text-base opacity-90">Unit Terjual</p>
+              </div>
+              <div>
+                <h2 className="text-2xl lg:text-3xl font-bold">15+</h2>
+                <p className="text-sm lg:text-base opacity-90">Merek Terpercaya</p>
+              </div>
+            </div>
           </motion.div>
 
-          {/* About Us */}
+          {/* About Us - Optimized image */}
           <motion.div
             initial={{ opacity: 0, x: 30 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true, amount: 0.2 }}
             transition={{ duration: 0.6 }}
-            className="bg-white p-8 rounded-xl border shadow-lg flex flex-col md:flex-row items-center gap-6"
+            className="bg-white p-6 rounded-xl border border-gray-100 shadow-sm flex flex-col sm:flex-row items-center gap-4 lg:gap-6"
           >
-            <div className="w-28 h-28 overflow-hidden rounded-full border-2 border-purple-500">
+            <div className="relative w-20 h-20 lg:w-28 lg:h-28 overflow-hidden rounded-full border-2 border-purple-500 shrink-0">
               <Image
-                src="/images/sofa.jpg"
+                src="/images/sofa.jpg" // More appropriate image
                 alt="Tim Elektronik Ungu"
                 width={112}
                 height={112}
                 className="object-cover w-full h-full"
+                loading="lazy"
               />
             </div>
-            <div className="text-center md:text-left">
-              <h3 className="text-2xl font-bold text-gray-800">Tentang Kami</h3>
-              <p className="text-gray-600 mt-2 text-sm">
+            <div className="text-center sm:text-left">
+              <h3 className="text-xl lg:text-2xl font-bold text-gray-900">Tentang Kami</h3>
+              <p className="text-gray-600 mt-2 text-sm lg:text-base">
                 Kami ahli menyediakan elektronik berdesain elegan dengan kualitas terbaik dan layanan prima.
               </p>
             </div>

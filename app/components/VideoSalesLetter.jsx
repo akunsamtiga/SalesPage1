@@ -1,65 +1,118 @@
 "use client";
-
 import { motion } from "framer-motion";
 import { useEffect, useState } from "react";
+import { useInView } from "react-intersection-observer";
 
 const VideoSalesLetter = () => {
   const [isClient, setIsClient] = useState(false);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const { ref, inView } = useInView({
+    triggerOnce: true,
+    threshold: 0.1,
+    rootMargin: "50px"
+  });
 
   useEffect(() => {
     setIsClient(true);
   }, []);
 
+  const containerVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut"
+      }
+    }
+  };
+
   return (
-    <section className="py-20 px-6 md:px-12 bg-gray-100 text-gray-900">
-      <div className="max-w-5xl mx-auto text-center">
-        {/* Judul Section */}
-        <motion.h2
-          className="text-4xl md:text-5xl font-bold text-[#6D28D9] leading-tight"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
+    <section 
+      ref={ref}
+      className="py-16 px-4 sm:px-6 lg:px-8 bg-gray-50"
+      aria-labelledby="video-heading"
+    >
+      <div className="max-w-4xl mx-auto">
+        {/* Header */}
+        <motion.div
+          className="text-center mb-10"
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          variants={containerVariants}
         >
-          Tonton Video Ini dan Temukan Rahasia Produk Elektronik Eksklusif!
-        </motion.h2>
-        <p className="text-gray-700 mt-4 text-lg">
-          Video ini akan mengungkapkan bagaimana Anda bisa memiliki produk elektronik premium yang meningkatkan kualitas hidup Anda.
-        </p>
-      </div>
+          <motion.h2
+            id="video-heading"
+            className="text-3xl sm:text-4xl font-bold text-purple-800 leading-tight"
+          >
+            Tonton Video Ini dan Temukan Rahasia Produk Elektronik Eksklusif!
+          </motion.h2>
+          <motion.p
+            className="mt-4 text-gray-600 text-base sm:text-lg"
+            transition={{ delay: 0.1 }}
+          >
+            Video ini akan mengungkapkan bagaimana Anda bisa memiliki produk elektronik premium yang meningkatkan kualitas hidup Anda.
+          </motion.p>
+        </motion.div>
 
-      {/* Container Video hanya dirender di client */}
-      <motion.div
-        className="mt-10 max-w-4xl mx-auto relative rounded-xl overflow-hidden shadow-xl border-4 border-[#6D28D9]"
-        initial={{ opacity: 0, y: 30 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-      >
-        {isClient && (
-          <iframe
-            className="w-full aspect-video rounded-lg"
-            src="https://www.youtube.com/embed/qK31qpUJC-A?rel=0&showinfo=0&autoplay=1&mute=1"
-            title="Video Sales Letter"
-            frameBorder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          ></iframe>
-        )}
-      </motion.div>
-
-      {/* Call-to-Action */}
-      <div className="text-center mt-14">
-        <motion.a
-          href="#cta"
-          className="bg-[#6D28D9] text-white px-8 py-4 rounded-md font-semibold text-xl shadow-lg hover:bg-[#4B1F87] transition duration-300"
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.6 }}
+        {/* Video Container */}
+        <motion.div
+          className="mt-8 relative rounded-lg overflow-hidden shadow-md aspect-video bg-gray-200"
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          variants={containerVariants}
+          transition={{ delay: 0.2 }}
         >
-          Dapatkan Koleksi Eksklusif Sekarang! 🏠✨
-        </motion.a>
+          {isClient && (
+            <>
+              {/* Thumbnail placeholder for better CLS */}
+              {!isPlaying && (
+                <div 
+                  className="absolute inset-0 flex items-center justify-center cursor-pointer"
+                  onClick={() => setIsPlaying(true)}
+                  aria-label="Play video"
+                >
+                  <div className="w-16 h-16 bg-purple-600 rounded-full flex items-center justify-center">
+                    <svg className="w-8 h-8 text-white" viewBox="0 0 24 24">
+                      <path fill="currentColor" d="M8,5.14V19.14L19,12.14L8,5.14Z" />
+                    </svg>
+                  </div>
+                </div>
+              )}
+              
+              {/* Lazy-loaded iframe */}
+              {isPlaying && (
+                <iframe
+                  className="w-full h-full"
+                  src={`https://www.youtube.com/embed/qK31qpUJC-A?rel=0&autoplay=1&mute=1`}
+                  title="Video Sales Letter"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  loading="lazy"
+                />
+              )}
+            </>
+          )}
+        </motion.div>
+
+        {/* CTA */}
+        <motion.div
+          className="text-center mt-10"
+          initial="hidden"
+          animate={inView ? "visible" : "hidden"}
+          variants={containerVariants}
+          transition={{ delay: 0.4 }}
+        >
+          <a
+            href="#cta"
+            className="inline-block bg-purple-700 hover:bg-purple-800 text-white px-6 py-3 rounded-lg font-medium shadow-sm transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2"
+            aria-label="Dapatkan koleksi eksklusif sekarang"
+          >
+            Dapatkan Koleksi Eksklusif Sekarang
+            <span aria-hidden="true" className="ml-2">🏠✨</span>
+          </a>
+        </motion.div>
       </div>
     </section>
   );
